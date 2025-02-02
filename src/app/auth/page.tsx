@@ -19,7 +19,7 @@ export default function LogIn() {
                         className="flex flex-col gap-4"
                         action={async () => {
                             'use server';
-                            await signIn('github', { callbackUrl: '/home' });
+                            await signIn('github', { redirectTo: '/home' });
                         }}
                     >
                         <Button type="submit" variant="outline">
