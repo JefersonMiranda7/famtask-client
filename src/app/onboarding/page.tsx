@@ -1,8 +1,14 @@
+import { auth } from '@/auth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { OnboardingForm } from '@/components/onboarding/onboarding-form';
+import { validateRoute } from '@/lib/utils/validRoutes';
 import { setRole } from '@/server/actions/auth';
 
 export default async function Onboarding() {
+    const session = await auth();
+    const user = session?.user;
+    validateRoute(user, '/onboarding');
+
     return (
         <main className="flex flex-grow flex-col items-center justify-center pt-24 pb-40 px-8">
             <Card className="max-w-full w-[500px]">

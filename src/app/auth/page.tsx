@@ -1,8 +1,13 @@
-import { signIn } from '@/auth';
+import { signIn, auth } from '@/auth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { validateRoute } from '@/lib/utils/validRoutes';
 
-export default function LogIn() {
+export default async function LogIn() {
+    const session = await auth();
+    const user = session?.user;
+    validateRoute(user, '/auth');
+
     return (
         <main className="flex flex-grow flex-col items-center justify-center pt-24 pb-40 px-8">
             <Card className="max-w-full w-96">
